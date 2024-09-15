@@ -8,14 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="redis-demo-local" />
-        <module name="redis-demo-v1" />
+        <module name="redis-v1-0" />
+        <module name="redis" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="redis" options="-parameters" />
       <module name="redis-demo-local" options="-parameters" />
-      <module name="redis-demo-v1" options="-parameters" />
+      <module name="redis-demo-v1" options="" />
+      <module name="redis-v1-0" options="-parameters" />
     </option>
   </component>
 </project>
