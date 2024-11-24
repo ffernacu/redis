@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pe.redis.entity.CategoriesEntity;
 import pe.redis.model.Categories;
-import pe.redis.repository.CategoriesRepository;
+import pe.redis.repository.CategoriesJpaRepository;
 
 import java.util.List;
 
@@ -14,19 +14,29 @@ import java.util.List;
 @Service
 @Slf4j
 public class CategoriesService {
-    private final CategoriesRepository categoriesRepository;
+    private final CategoriesJpaRepository categoriesRepository;
 
-    @Cacheable(cacheNames = "cache_names")
+    @Cacheable(value = "categories")
     public List<Categories> list(){
         List<CategoriesEntity> entities = categoriesRepository.findAll();
         log.info("size: {}", entities.size());
         return entities.stream().map(this::map).toList();
     }
 
+    public void save(Categories categories){
+        categoriesRepository.save(map(categories));
+    }
+
     private Categories map(CategoriesEntity entity){
         return Categories.builder()
                 .id(entity.getId())
                 .name(entity.getName()).build();
+    }
+
+    private CategoriesEntity map(Categories model){
+        return CategoriesEntity.builder()
+                .id(model.getId())
+                .name(model.getName()).build();
     }
 
 }

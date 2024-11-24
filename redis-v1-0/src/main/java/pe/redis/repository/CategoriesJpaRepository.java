@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import pe.redis.entity.CategoriesEntity;
 
 @Repository
-public interface CategoriesRepository extends JpaRepository<CategoriesEntity,Integer> {
+public interface CategoriesJpaRepository extends JpaRepository<CategoriesEntity,Integer> {
 }

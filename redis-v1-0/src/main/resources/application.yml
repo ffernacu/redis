@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: redis-demo-v1
+    name: redis-demo-v1-0
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://127.0.0.1:1433;databaseName=northwind;encrypt=false;trustServerCertificate=false
@@ -17,8 +17,10 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: 'true'
-  redis:
-    host: localhost
-    password:
-    username:
-    port: 6379
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      password:
+      timeout: 10000
